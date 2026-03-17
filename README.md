@@ -3,7 +3,7 @@ Getting Aztecs ECS to play with Raylib
 
 ## Wiring the app together
 
-See the "setup Raylib app" section in [`src/Lib.hs`](https://github.com/derelbenkoenig/aztecs-ecs-example/blob/main/src/Lib.hs).
+See the "setup Raylib app" section in [`src/Lib.hs`](https://github.com/derelbenkoenig/aztecs-raylib-example/blob/main/src/Lib.hs).
 
 Raylib has a `rayLibApplication` function that uses template haskell to generate the
 entrypoint of the app. This requires you to give it functions that run in `IO` directly, while

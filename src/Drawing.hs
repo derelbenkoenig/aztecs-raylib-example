@@ -1,4 +1,3 @@
-
 module Drawing where
 
 import Components
