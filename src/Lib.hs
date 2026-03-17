@@ -21,6 +21,24 @@ initWorld = do
     guy <- Az.spawn $ Az.bundle (position 0 0) <> Az.bundle Guy
     pure ()
 
+-- N.B.
+--   a System essentially lets you apply modifications to the values of Components
+--   but you need an Access if you need the additional power of spawning new entities or
+--   deleting existing ones. And while Access is a monad, System is only an Applicative.
+--   It's sort of like a free Applicative, which is what enables the ECS to freely rearrange
+--   how a System is actually computed more so than if it was a Monad. But liftIO requires
+--   MonadIO, which has Monad as a superclass. So because we use liftIO to read keyboard
+--   inputs from raylib, the whole thing needs to be an Access rather than a System.
+--
+--   How could this be avoided? Possibly by reading inputs in a separate step and storing
+--   the input buffer somewhere in the World as a component, so this could just be a System
+--   that queries the input buffer instead of performing the IO.
+--
+--   Another idea that springs to mind is to simply define an equivalent of liftIO that does work
+--   for System. But if that's even possible, it would be very clearly fighting against the
+--   intentional design of Aztecs. The idea that System being Applicative but not a Monad allows
+--   more freedom in computing them would go hand in hand with the idea that you can't just do
+--   IO in them, wouldn't it!
 moveGuy :: Az.Access IO ()
 moveGuy = do
     moveDelta <- liftIO $ do
