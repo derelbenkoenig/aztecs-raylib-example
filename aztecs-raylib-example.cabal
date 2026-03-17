@@ -1,0 +1,62 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.38.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           aztecs-raylib-example
+version:        0.1.0.0
+homepage:       https://github.com/derelbenkoenig/aztecs-raylib-example#readme
+bug-reports:    https://github.com/derelbenkoenig/aztecs-raylib-example/issues
+author:         Robert Benson
+maintainer:     derelbenkoenig@gmail.com
+copyright:      2026 Robert Benson
+license:        Unlicense
+license-file:   LICENSE
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/derelbenkoenig/aztecs-raylib-example
+
+library
+  exposed-modules:
+      Components
+      Drawing
+      Lib
+  other-modules:
+      Paths_aztecs_raylib_example
+  autogen-modules:
+      Paths_aztecs_raylib_example
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      MonadRandom
+    , aztecs
+    , base >=4.7 && <5
+    , brick
+    , h-raylib
+    , linear
+    , mtl
+  default-language: GHC2024
+
+executable aztecs-raylib-example
+  main-is: Main.hs
+  other-modules:
+      Paths_aztecs_raylib_example
+  autogen-modules:
+      Paths_aztecs_raylib_example
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      MonadRandom
+    , aztecs
+    , aztecs-raylib-example
+    , base >=4.7 && <5
+    , brick
+    , h-raylib
+    , linear
+    , mtl
+  default-language: GHC2024

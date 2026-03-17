@@ -1,0 +1,43 @@
+name:                aztecs-raylib-example
+version:             0.1.0.0
+github:              "derelbenkoenig/aztecs-raylib-example"
+license:             Unlicense
+author:              "Robert Benson"
+maintainer:          "derelbenkoenig@gmail.com"
+copyright:           "2026 Robert Benson"
+
+language: GHC2024
+
+dependencies:
+- base >= 4.7 && < 5
+- aztecs
+- brick
+- MonadRandom
+- h-raylib
+- linear
+- mtl
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  aztecs-raylib-example:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aztecs-raylib-example
