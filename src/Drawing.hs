@@ -15,7 +15,7 @@ import qualified Raylib.Util.Colors as RL
 
 -- | an Access that properly brackets its "drawing" for Raylib.
 --   Combine all drawing functions into one and then apply this to it.
-drawingAccess :: Az.Access IO () -> Az.Access IO ()
+drawingAccess :: Az.Access IO a -> Az.Access IO a
 drawingAccess acc = Az.Access $ StateT $ \s -> RL.drawing $ runStateT (Az.unAccess acc) s
 
 drawWorld :: Az.Access IO ()
