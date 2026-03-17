@@ -90,6 +90,25 @@ rlShouldClose _ = RL.windowShouldClose
 rlTearDown :: AppState -> IO ()
 rlTearDown (AppState window world) = RL.closeWindow (Just window)
 
+-- N.B.
+--   compiling with -ddump-splices shows this:
+--
+-- /home/derelbenkoenig/github/aztecs-raylib-example/src/Lib.hs:93:2-73: Splicing declarations
+--     RL.raylibApplication
+--       'rlStartup 'rlMainLoop 'rlShouldClose 'rlTearDown
+--   ======>
+--     main :: IO ()
+--     main
+--       = Raylib.Util.runRaylibProgram
+--           rlStartup rlMainLoop rlShouldClose rlTearDown
+--
+--   i.e., it looks like I could have just called runRaylibProgram rather than
+--   using template haskell. But the documentation recommends using the TH, so that if
+--   you build for the web target rather than native, it generates something different that
+--   involves defining external hooks. Apparently web support is "not finalized" but I'm
+--   looking forward to it, I assume more people would play my game if they can just load it
+--   up in their browser (and then maybe download the native version instead when they decide
+--   they like it so much and/or the browser version has worse performance)
 $(RL.raylibApplication 'rlStartup 'rlMainLoop 'rlShouldClose 'rlTearDown)
 
 someFunc :: IO ()
